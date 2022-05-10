@@ -107,7 +107,7 @@ public class Person {
             A174 : management/ self-employed/
             highly qualified employee/ officer""")
     private String job;
-    @Schema(description = "Количество лиц, на которых возложена обязанность по содержанию")
+    @Schema(description = "Количество лиц, по которым возложена обязанность по содержанию")
     private String numDependents;
     @Schema(description = """
             Телефон

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</head>
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+
+<style>
+    .form-width {max-width: 25rem;}
+    .has-float-label {
+        position: relative; }
+    .has-float-label label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: text;
+        font-size: 75%;
+        opacity: 1;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        top: -.5em;
+        left: 0.75rem;
+        z-index: 3;
+        line-height: 1;
+        padding: 0 1px; }
+    .has-float-label label::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        background: white;
+        height: 2px;
+        top: 50%;
+        left: -.2em;
+        right: -.2em;
+        z-index: -1; }
+    .has-float-label .form-control::-webkit-input-placeholder {
+        opacity: 1;
+        -webkit-transition: all .2s;
+        transition: all .2s; }
+    .has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+        opacity: 0; }
+    .has-float-label .form-control:placeholder-shown:not(:focus) + label {
+        font-size: 150%;
+        opacity: .5;
+        top: .3em; }
+
+    .input-group .has-float-label {
+        display: table-cell; }
+    .input-group .has-float-label .form-control {
+        border-radius: 0.25rem; }
+    .input-group .has-float-label:not(:last-child) .form-control {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0; }
+    .input-group .has-float-label:not(:first-child) .form-control {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        margin-left: -1px; }
+</style>
+<div class="p-x-1 p-y-3">
+<form class="card card-block m-x-auto bg-faded form-width" th:action="@{/score}" method="get">
+ </span>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="checkingStatus" name="checkingStatus">
+            <option><0</option>
+            <option>0<=X<200</option>
+            <option>>=200</option>
+            <option>Нет расчетного счета</option>
+        </select>
+        <label for="checkingStatus">Состояние существующего расчетного счета</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="duration" name="duration" type="number"/>
+        <label for="duration">Длительность кредита</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="creditHistory" name="creditHistory">
+            <option>Кредиты не взяты / Все кредиты возвращены должным образом</option>
+            <option>Все кредиты в этом банке погашены должным образом</option>
+            <option>Существующие кредиты, погашющиеся должным образом</option>
+            <option>Прошлые кредиты с задержками в выплатах</option>
+            <option>Критический счет / Другие существующие кредиты (не в этом банке)</option>
+        </select>
+        <label for="creditHistory">Кредитная история</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="purpose" name="purpose">
+            <option>Автомобиль (новый)</option>
+            <option>Автомобиль (б/у)</option>
+            <option>Мебель / Оборудование</option>
+            <option>Компьютер / Телевизор</option>
+            <option>Бытовая техника</option>
+            <option>Ремонт</option>
+            <option>Образование</option>
+            <option>Путешествие</option>
+            <option>Бизнес</option>
+            <option>Другое</option>
+        </select>
+        <label for="purpose">Цель кредита</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="creditAmount" name="creditAmount" type="number"/>
+        <label for="creditAmount">Размер кредита</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="savingStatus" name="savingStatus">
+            <option>< 100</option>
+            <option>100 <= ... < 500</option>
+            <option>500 <= ... < 1000</option>
+            <option>... >= 1000</option>
+            <option>Нет сбережений</option>
+        </select>
+        <label for="savingStatus">Сберегательный счет/облигации</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="employment" name="employment">
+            <option>Не работает</option>
+            <option>< 1 года</option>
+            <option>1 <= ... < 4 лет</option>
+            <option>4 <= ... < 7 лет</option>
+            <option>>= 7 лет</option>
+        </select>
+        <label for="employment">Стаж работы</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="installmentCommitment" name="installmentCommitment" type="number"/>
+        <label for="installmentCommitment">Ставка рассрочки в процентах от располагаемого дохода</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="personalStatus" name="personalStatus">
+            <option>Мужчина: женат</option>
+            <option>Мужчина: разведен/живет отдельно</option>
+            <option>Мужчина: не в браке</option>
+            <option>Женщина: замужем</option>
+            <option>Женщина: разведена/живет отдельно</option>
+            <option>Женщина: не в браке</option>
+        </select>
+        <label for="personalStatus">Социальный статус и пол</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="otherParties" name="otherParties">
+            <option>Отсутствует</option>
+            <option>Созаявитель</option>
+            <option>Поручитель</option>
+        </select>
+        <label for="otherParties">Прочие должники/поручители</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="residenceSince" name="residenceSince" type="number"/>
+        <label for="residenceSince">Длительность настоящего места жительства</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="propertyMagnitude" name="propertyMagnitude">
+            <option>Недвижимость</option>
+            <option>Страхование жизни</option>
+            <option>Автомобиль</option>
+            <option>Неизвестно / Нету собственности</option>
+        </select>
+        <label for="propertyMagnitude">Собственность</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="age" name="age" type="number"/>
+        <label for="age">Возраст</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="otherPaymentPlans" name="otherPaymentPlans">
+            <option>Банк</option>
+            <option>Сбережения</option>
+            <option>Отсвутствует</option>
+        </select>
+        <label for="otherPaymentPlans">Другие планы рассрочки</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="housing" name="housing">
+            <option>Аренда</option>
+            <option>Собственное</option>
+            <option>Бесплатное</option>
+        </select>
+        <label for="housing">Жильё</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="existingCredits" name="existingCredits" type="number"/>
+        <label for="existingCredits">Количество существующих кредитов в этом банке</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="job" name="job">
+            <option>Безработный/неквалифицированный - нерезидент</option>
+            <option>Неквалифицированный - резидент</option>
+            <option>Квалифицированный работник / Должностное лицо</option>
+            <option>Руководитель/Самозанятый/Высококвалифицированный сотрудник</option>
+        </select>
+        <label for="job">Работа</label>
+    </div>
+    <div class="form-group has-float-label">
+        <input class="form-control" id="numDependents" name="numDependents" type="number"/>
+        <label for="numDependents">Количество лиц, по которым возложена обязанность по содержанию</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="ownTelephone" name="ownTelephone">
+            <option>Отсутствует</option>
+            <option>Имеется, зарегистрирован на имя клиента</option>
+        </select>
+        <label for="ownTelephone">Телефон</label>
+    </div>
+    <div class="form-group has-float-label">
+        <select class="form-control" id="foreignWorker" name="foreignWorker">
+            <option>Да</option>
+            <option>Нет</option>
+        </select>
+        <label for="foreignWorker">Иностранный работник</label>
+    </div>
+
+
+    <div class="text-xs-center">
+        <button class="btn btn-block btn-primary" type="submit">Получить оценку</button>
+    </div>
+    <div class="text-xs-center">
+        <p th:text="${result}"></p>
+    </div>
+</form>
+</div>
+</body>
+</html>

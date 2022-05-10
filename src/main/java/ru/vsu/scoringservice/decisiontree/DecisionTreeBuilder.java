@@ -12,11 +12,11 @@ public class DecisionTreeBuilder {
 
 	private List<Item> trainingSet;
 
-	private List<Predicate> defaultPredicates = new LinkedList<Predicate>();
+	private List<Predicate> defaultPredicates = new LinkedList<>();
 
-	private Map<String, List<Predicate>> attributesPredicates = new HashMap<String, List<Predicate>>();
+	private Map<String, List<Predicate>> attributesPredicates = new HashMap<>();
 
-	private Set<String> ignoredAttributes = new HashSet<String>();
+	private Set<String> ignoredAttributes = new HashSet<>();
 
 	private int minimalNumberOfItems = 1;
 

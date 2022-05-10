@@ -161,9 +161,9 @@ public class DecisionTree {
 
 		SplitResult bestSplitResult = null;
 		
-		Set<Rule> testedRules = new HashSet<Rule>();
+		Set<Rule> testedRules = new HashSet<>();
 		
-		for (Item baseItem : new LinkedList<Item>(items)) {
+		for (Item baseItem : new LinkedList<>(items)) {
 			for (String attr : baseItem.getAttributeNames()) {
 
 				if (ignoredAttributes.contains(attr)) {
@@ -203,10 +203,10 @@ public class DecisionTree {
 	}
 
 	private static SplitResult split(Rule rule, List<Item> base) {
-		List<Item> matched = new LinkedList<Item>();
-		List<Item> notMatched = new LinkedList<Item>();
+		List<Item> matched = new LinkedList<>();
+		List<Item> notMatched = new LinkedList<>();
 
-		for (Item otherItem : new LinkedList<Item>(base)) {
+		for (Item otherItem : new LinkedList<>(base)) {
 			if (rule.match(otherItem)) {
 				matched.add(otherItem);
 			} else {
@@ -253,7 +253,7 @@ public class DecisionTree {
 	}
 
 	private static List<Object> getCategories(List<Item> items) {
-		List<Object> categories = new LinkedList<Object>();
+		List<Object> categories = new LinkedList<>();
 		for (Item item : items) {
 			categories.add(item.getCategory());
 		}
@@ -261,7 +261,7 @@ public class DecisionTree {
 	}
 
 	private static Map<Object, Integer> groupAndCount(List<Object> categories) {
-		Map<Object, Integer> categoryCount = new HashMap<Object, Integer>();
+		Map<Object, Integer> categoryCount = new HashMap<>();
 		for (Object cat : categories) {
 			Integer count = categoryCount.get(cat);
 			if (count == null) {
@@ -288,18 +288,14 @@ public class DecisionTree {
 		this.notMatchSubTree = notMatchSubTree;
 	}
 
-	private static class SplitResult {
+	private record SplitResult(List<Item> matched,
+							   List<Item> notMatched,
+							   Rule rule) {
 
-		public final Rule rule;
-
-		public final List<Item> matched;
-
-		public final List<Item> notMatched;
-
-		public SplitResult(List<Item> matched, List<Item> notMatched, Rule rule) {
+		private SplitResult(List<Item> matched, List<Item> notMatched, Rule rule) {
 			this.rule = rule;
-			this.matched = new ArrayList<Item>(matched);
-			this.notMatched = new ArrayList<Item>(notMatched);
+			this.matched = new ArrayList<>(matched);
+			this.notMatched = new ArrayList<>(notMatched);
 		}
 	}
 

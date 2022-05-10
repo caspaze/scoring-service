@@ -7,20 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.vsu.scoringservice.model.Person;
 import ru.vsu.scoringservice.service.ScoreService;
 
+import java.util.Map;
+
 @Controller
 public class ScoringController {
     @Autowired
     private ScoreService scoreService;
 
-    @GetMapping("/status")
-    public ResponseEntity status() {
-        System.out.println("Ok");
-        return ResponseEntity.ok().build();
+    @GetMapping("/")
+    public String index() {
+        return "index";
     }
 
+
+
     @GetMapping(value = "score")
-    public String score(Person person) {
+    public String score(Person person, Map<String,Object> model) {
+
         var result = scoreService.score(person);
-        return result.toString();
+        String rusResult = switch (result.getScoreResult()) {
+            case "good" -> "Одобрено";
+            default -> "Отказ";
+        };
+        model.put("result","Результат: " + rusResult);
+        return "index";
     }
 }
