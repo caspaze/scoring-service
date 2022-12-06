@@ -1,5 +1,6 @@
 package ru.vsu.scoringservice.service;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vsu.scoringservice.converter.ItemConverter;
@@ -31,5 +32,11 @@ public class ScoreService {
 
     private Object decide(Map<Object, Integer> results) {
         return Collections.max(results.entrySet(), Map.Entry.comparingByValue()).getKey();
+    }
+
+    @SneakyThrows
+    public void display() {
+        Thread.sleep(5000);
+        trainService.displayForest(randomForest);
     }
 }

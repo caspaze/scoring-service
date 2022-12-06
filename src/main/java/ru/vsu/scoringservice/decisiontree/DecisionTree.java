@@ -176,8 +176,7 @@ public class DecisionTree {
 
 				for (Predicate pred : predicates) {
 					Rule rule = new Rule(attr, pred, value);
-					
-					// Avoid checking the slit by the same rules more than once
+
 					if(testedRules.contains(rule)) {
 						continue;
 					}

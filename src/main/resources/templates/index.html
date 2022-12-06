@@ -61,7 +61,7 @@
         margin-left: -1px; }
 </style>
 <div class="p-x-1 p-y-3">
-<form class="card card-block m-x-auto bg-faded form-width" th:action="@{/score}" method="get">
+<form class="card card-block m-x-auto bg-faded form-width" th:action="@{/api/v1/score}" method="get">
  </span>
     <div class="form-group has-float-label">
         <select class="form-control" id="checkingStatus" name="checkingStatus">
@@ -150,7 +150,7 @@
     </div>
     <div class="form-group has-float-label">
         <input class="form-control" id="residenceSince" name="residenceSince" type="number"/>
-        <label for="residenceSince">Длительность настоящего места жительства</label>
+        <label for="residenceSince">Длительность проживания на текущем месте</label>
     </div>
     <div class="form-group has-float-label">
         <select class="form-control" id="propertyMagnitude" name="propertyMagnitude">
@@ -169,7 +169,7 @@
         <select class="form-control" id="otherPaymentPlans" name="otherPaymentPlans">
             <option>Банк</option>
             <option>Сбережения</option>
-            <option>Отсвутствует</option>
+            <option>Отсутствует</option>
         </select>
         <label for="otherPaymentPlans">Другие планы рассрочки</label>
     </div>

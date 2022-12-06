@@ -83,7 +83,7 @@ public class TrainService {
         return list;
     }
 
-    private void displayForest(RandomForest forest) {
+    public void displayForest(RandomForest forest) {
         forest.getTrees().forEach(tree -> display(SwingTreeVisitor.buildSwingTree(tree), 400, 500));
         //display(SwingTreeVisitor.buildSwingTree(forest.getTrees().get(1)), 400, 500);
     }

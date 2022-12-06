@@ -8,37 +8,22 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 public class SwingTreeVisitor implements DecisionTreeVisitor {
 
-    private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+    private final DefaultMutableTreeNode root = new DefaultMutableTreeNode();
 
     @Override
     public void visit(DecisionTree tree) {
         if (tree.getRule() != null) {
             String description;
 
-            Predicate predicate = tree.getRule().getPredicate();
-            String attribute = tree.getRule().getAttribute();
-            Object value = tree.getRule().getSampleValue();
-            switch (predicate) {
-                case EQUAL:
-                    description = attribute + " == " + value;
-                    break;
-
-                case EXISTS:
-                    description = "exists " + attribute;
-                    break;
-
-                case GTE:
-                    description = attribute + " >= " + value;
-                    break;
-
-                case LTE:
-                    description = attribute + " =< " + value;
-                    break;
-
-                default:
-                    description = attribute + predicate.toString() + value;
-                    break;
-            }
+            Predicate predicate = tree.getRule().predicate();
+            String attribute = tree.getRule().attribute();
+            Object value = tree.getRule().sampleValue();
+            description = switch (predicate) {
+                case EQUAL -> attribute + " == " + value;
+                case EXISTS -> "exists " + attribute;
+                case GTE -> attribute + " >= " + value;
+                case LTE -> attribute + " =< " + value;
+            };
 
             this.root.setUserObject(description);
             this.root.add( buildSwingTree( tree.getMatchSubTree() ) );

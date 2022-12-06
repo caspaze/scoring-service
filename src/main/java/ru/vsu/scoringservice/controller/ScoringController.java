@@ -1,9 +1,12 @@
 package ru.vsu.scoringservice.controller;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.vsu.scoringservice.model.Person;
 import ru.vsu.scoringservice.service.ScoreService;
 
@@ -19,9 +22,7 @@ public class ScoringController {
         return "index";
     }
 
-
-
-    @GetMapping(value = "score")
+    @GetMapping(value = "/score")
     public String score(Person person, Map<String,Object> model) {
 
         var result = scoreService.score(person);
@@ -31,5 +32,16 @@ public class ScoringController {
         };
         model.put("result","Результат: " + rusResult);
         return "index";
+    }
+
+    @PostMapping("/train")
+    public String train() {
+        scoreService.display();
+        return "index";
+    }
+
+    @PatchMapping("/retrain")
+    public void retrain() {
+
     }
 }
